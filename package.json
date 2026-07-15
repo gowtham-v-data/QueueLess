@@ -1,0 +1,20 @@
+{
+  "name": "queueless",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c cyan,magenta \"npm run dev --workspace @queueless/api\" \"npm run dev --workspace @queueless/web\"",
+    "build": "npm run build --workspace @queueless/api && npm run build --workspace @queueless/web",
+    "typecheck": "npm run typecheck --workspaces",
+    "lint": "npm run lint --workspaces",
+    "prisma:generate": "npm run prisma:generate --workspace @queueless/api",
+    "prisma:migrate": "npm run prisma:migrate --workspace @queueless/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3"
+  }
+}
